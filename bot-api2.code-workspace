@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "bot-api2",
+			"uri": "sftp://root@138.197.181.150/home/bot-api2"
+		},
+		{
+			"name": "root",
+			"uri": "sftp://root@138.197.181.150/root"
+		}
+	]
+}
