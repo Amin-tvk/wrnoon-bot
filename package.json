@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@grammyjs/conversations": "github:grammyjs/conversations",
     "@grammyjs/menu": "^1.1.2",
     "file-system": "^2.2.2",
     "fs": "^0.0.1-security",

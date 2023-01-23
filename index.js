@@ -1,5 +1,9 @@
 const { Bot , InlineKeyboard , Keyboard  , session , SessionFlavor , Context , freeStorage , SessionData} = require("grammy");
 const { Menu } = require("@grammyjs/menu");
+const {
+  conversations,
+  createConversation,
+} = require("@grammyjs/conversations");
 //import { md } from 'telegram-md';
 //import { MenuRange } from "https://deno.land/x/grammy_menu@v1.1.2/mod.ts";
 const { count } = require("console");
@@ -10,8 +14,9 @@ var Kavenegar = require('kavenegar');
 let config = require('./config.js');
 let connection = mysql.createConnection(config);
 //varible
+let inp = false;
 this.data = false;
-let input_number = false;
+this.input_number = false;
 const logo = "https://ibb.co/hfnLP3w"
 //import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
 // Create a bot.
@@ -57,11 +62,13 @@ const main = new Menu("root-menu")
   .text("Channel Wrnoon" +"📢", (ctx) => ctx.reply("@Wrnoon_channel") )
 //منو اصلی
 const Order = new Menu("credits-menu")
-  .submenu("نان تنوری" , "bread_tanori" , (ctx) => 
-  ctx.editMessageText("تعداد نان را انتخاب کنید") ,
+.submenu("نان تنوری", "bread_tanori" ,  (ctx) => { ctx.reply("Wellcome to wrnoon")
+inp = true ,
+console.log(inp)
+
+}).row(
   
-  //input_number = true , 
-  ).row()
+  )
   //.text("نان تنوری", (ctx) => ctx.editMessageText("تعداد نان را انتخاب کنید")  ,).row()
   //.submenu("نان سنگک" , "bread_sangak" , (ctx) => ctx.editMessageText("تعداد نان را انتخاب کنید")).row()
   .back("برگشت");
@@ -82,42 +89,28 @@ const panel = new Menu("panel")
 const Rules = new Menu("Rules")
     .text("Show Credits", (ctx) => ctx.editMessageText("@Wrnoon_channel"))
     .back("برگشت");
-    // منو پشتیبانی
+  // منو پشتیبانی
 const Support = new Menu("Support")
   .text("Show Credits", (ctx) => ctx.reply("Wellcome to wrnoon"))
-  .back("برگشت");
-  // منو چنل
+  .back("برگشت")
+  // منو چنل 
 const Channel = new Menu("Channel")
   .text("Show Credits", (ctx) => ctx.reply("Wellcome to wrnoon"))
   .back("برگشت");
 const bread_tanori = new Menu("bread_tanori")
-  .submenu(
-    "1", "va" ,  (ctx) => { 
-      ctx.reply("Wellcome to wrnoon")
-      this.test = true;
-      console.log(this.test);
-    }).row()
-  .submenu("2", (ctx) => ctx.reply("Wellcome to wrnoon")).row(
-    
-  )
-  .submenu("3", (ctx) => ctx.reply("Wellcome to wrnoon")).row()
-  .submenu("4", (ctx) => ctx.reply("Wellcome to wrnoon")).row()
-  .back("برگشت" , (ctx) => ctx.editMessageText('کاربر'+ ctx.chat.first_name+'به ربات ورنون خوش امدی'+'🌹' + "\n \n"+" برای ثبت سفارش روی سفارش نان ضربه بزنید")); 
+  .text("Show Credits", (ctx) => ctx.reply("Wellcome to wrnoon"))
+  .submenu("3", (ctx) => { ctx.reply("Wellcome to wrnoon")
 
+}).row()
 const bread_sangak = new Menu("bread_sangak")
 //.url("slm","https://telegram.com").row()
-.submenu("1", (ctx) => ctx.reply("Wellcome to wrnoon")).row()
-.submenu("2", (ctx) => ctx.reply("Wellcome to wrnoon")).row()
+.submenu("1", (ctx) => 
+ctx.reply("Wellcome to wrnoon"),
+).row()
 .submenu("3", (ctx) => ctx.reply("Wellcome to wrnoon")).row()
 .submenu("4", (ctx) => ctx.reply("Wellcome to wrnoon")).row()
-.text("amin" ,(ctx) => ctx.reply("Wellcome to wrnoon") ).row()
-  .back("برگشت" , (ctx) => ctx.editMessageText('کاربر'+ctx.chat.first_name+'به ربات ورنون خوش امدی'+'🌹' + "\n \n"+" برای ثبت سفارش روی سفارش نان ضربه بزنید"));
-const va = new Menu("va")
-.submenu("1", (ctx) => bot.on("message", (ctx) => {
-  const message = ctx.message;
-  console.log(message)
-  // the message object
-}));
+
+.back("برگشت" , (ctx) => ctx.editMessageText('کاربر'+ctx.chat.first_name+'به ربات ورنون خوش امدی'+'🌹' + "\n \n"+" برای ثبت سفارش روی سفارش نان ضربه بزنید"));
 //ctx.reply("Wellcome to wrnoon")).row()
 
 main.register(Order);
@@ -128,7 +121,6 @@ main.register(panel);
 main.register(Rules);
 main.register(bread_tanori);
 main.register(bread_sangak);
-main.register(va);
 bot.use(main);
 bot.use(Order);
 /*bot.use(session({ 
@@ -142,7 +134,7 @@ bot.command("start", async (ctx) => {
   
   //connection.query(`INSERT INTO tbl_user (user_id,username)
     //  VALUES (${ctx.chat.id},'${ctx.chat.username}');`)
-    await ctx.replyWithPhoto(logo , {reply_to_message_id: ctx.msg.message_id} ,);
+    await ctx.replyWithPhoto(logo , );
    
      //https://ibb.co/hfnLP3w
   // Send the menu.
@@ -150,7 +142,7 @@ bot.command("start", async (ctx) => {
 
     'کاربر'+ctx.chat.first_name + 'به ربات ورنون خوش امدی' +'🌹' + "\n \n"+" برای ثبت سفارش روی سفارش نان ضربه بزنید" ,
     
-     { reply_markup: main , force_reply: true }); 
+     { reply_markup: main , force_reply: true  , reply_to_message_id: ctx.msg.message_id }); 
     
       console.log(ctx.from?.id.toString() , /*sql*/ )
 });
@@ -158,11 +150,16 @@ bot.command("stop", async (ctx) => {
   await ctx.reply(
     'بکیرم')
 });
-bot.on("message", (ctx) => ctx.reply("داده غیر مجاز!"));
+if (inp == false) {
+  bot.on("message", (ctx) => ctx.reply("داده غیر مجاز!" , 
+  {reply_to_message_id: ctx.msg.message_id}))
+}else{
+  bot.on("message", (ctx) => ctx.reply("ویت" , 
+  {reply_to_message_id: ctx.msg.message_id}))}
 
 const photo = bot.on("message:photo", (ctx) => {
   if(this.test == true){
-  ctx.reply("در حال تایید مدیریت ...")} 
+  ctx.reply("در حال تایید مدیریت ...")}
   console.log(photo) 
   console.log("ok")
   });
@@ -171,6 +168,10 @@ bot.on("message", (ctx) => {
       const message = ctx.message; // the message object
     });
 */
-  
 bot.start();
-console.log("Bot is working ..."  )
+
+function doStuff() {
+  console.log("Bot is working ..." , inp , typeof(inp))
+  setTimeout(doStuff, 5000);
+}
+setTimeout(doStuff, 5000);
