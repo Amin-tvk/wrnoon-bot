@@ -37,7 +37,7 @@ connection.connect(function(err) {
 });
 function enable_number(){
   console.log(input)
-  input1 = input
+  input = true
   console.log(input)
 
 
