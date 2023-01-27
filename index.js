@@ -14,9 +14,9 @@ var Kavenegar = require('kavenegar');
 let config = require('./config.js');
 let connection = mysql.createConnection(config);
 //varible
-let inp = false;
+let input = false;
 this.data = false;
-this.input_number = false;
+this.inputut_number = false;
 const logo = "https://ibb.co/hfnLP3w"
 //import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
 // Create a bot.
@@ -36,7 +36,10 @@ connection.connect(function(err) {
   console.log('Connected to the MySQL server.');
 });
 function enable_number(){
-return input_number = true
+  console.log(input)
+  input1 = input
+  console.log(input)
+
 
 }
 /*
@@ -63,9 +66,7 @@ const main = new Menu("root-menu")
 //منو اصلی
 const Order = new Menu("credits-menu")
 .submenu("نان تنوری", "bread_tanori" ,  (ctx) => { ctx.reply("Wellcome to wrnoon")
-inp = true ,
-console.log(inp)
-
+enable_number();
 }).row(
   
   )
@@ -122,7 +123,7 @@ main.register(Rules);
 main.register(bread_tanori);
 main.register(bread_sangak);
 bot.use(main);
-bot.use(Order);
+
 /*bot.use(session({ 
     initial: () => ({ count: 0 }),
     storage: freeStorage<SessionData>(bot.token),
@@ -150,14 +151,9 @@ bot.command("stop", async (ctx) => {
   await ctx.reply(
     'بکیرم')
 });
-if (inp == false) {
-  bot.on("message", (ctx) => ctx.reply("داده غیر مجاز!" , 
-  {reply_to_message_id: ctx.msg.message_id}))
-}else{
-  bot.on("message", (ctx) => ctx.reply("ویت" , 
-  {reply_to_message_id: ctx.msg.message_id}))}
 
-const photo = bot.on("message:photo", (ctx) => {
+  
+  const photo = bot.on("message:photo", (ctx) => {
   if(this.test == true){
   ctx.reply("در حال تایید مدیریت ...")}
   console.log(photo) 
@@ -170,8 +166,35 @@ bot.on("message", (ctx) => {
 */
 bot.start();
 
+  
 function doStuff() {
-  console.log("Bot is working ..." , inp , typeof(inp))
+  console.log("Bot is working ..." , input )
+  
   setTimeout(doStuff, 5000);
 }
 setTimeout(doStuff, 5000);
+/*
+if (input == true){
+  bot.on("message", (ctx) => ctx.reply("ویت" , 
+  {reply_to_message_id: ctx.msg.message_id}))
+}else{
+  bot.on("message", (ctx) => ctx.reply("غیر مجاز!" , 
+    {reply_to_message_id: ctx.msg.message_id}))
+}
+*/
+//bot.on("message", (ctx) => ctx.reply(check_num(input)))
+bot.on("message", ctx => {
+  if (input == true) {ctx.reply("ویت" , 
+  {reply_to_message_id: ctx.msg.message_id}) 
+  console.log(ctx.message.text);
+
+}else{
+    ctx.reply("غیر مجاز!" , 
+    {reply_to_message_id: ctx.msg.message_id})
+  }
+})
+  
+
+  
+
+  
