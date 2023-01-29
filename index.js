@@ -68,7 +68,7 @@ const main = new Menu("root-menu")
   .submenu("✨پنل کاربری" , "panel")
   .submenu("📜قوانین" , "Rules").row()
   .submenu("📞پشتیبانی" ,  "Support")
-  .text("Channel Wrnoon" +"📢", (ctx) => ctx.reply("@Wrnoon_channel") )
+  .url("Channel Wrnoon" +"📢", "https://t.me/Wrnoon_channel") 
 //منو اصلی
 const Order = new Menu("credits-menu")
 .submenu("نان تنوری", "bread_tanori" ,  (ctx) => { 
@@ -268,8 +268,3 @@ bot.on("message", (ctx) => {
     {reply_to_message_id: ctx.msg.message_id})
   }
 })
-  
-
-  
-
-  
