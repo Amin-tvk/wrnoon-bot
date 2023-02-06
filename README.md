@@ -1,1 +1,2 @@
 # wrnoon-bot
+سلام
