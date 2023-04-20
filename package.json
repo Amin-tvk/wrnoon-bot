@@ -1,44 +1,21 @@
-{
+ {
   "name": "bot-api2",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo oK!!",
+    "start": "pm2 start --name wrnoon -f index.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@grammyjs/conversations": "github:grammyjs/conversations",
-    "@grammyjs/menu": "^1.1.2",
-<<<<<<< HEAD
-    "@grammyjs/storage-free": "^2.1.0",
-    "csv": "^6.2.5",
-=======
->>>>>>> 4358e44452672738e15f78a39a7d6b82d0647489
-    "file-system": "^2.2.2",
-    "fs": "^0.0.1-security",
-    "grammy": "^1.12.5",
-    "grammy-reply-with-markdown": "^1.0.0",
+    "@grammyjs/conversations": "^1.1.1",
+    "@grammyjs/menu": "^1.1.3",
+    "@grammyjs/storage-free": "^2.2.0",
+    "grammy": "^1.15.3",
     "kavenegar": "^1.1.4",
-<<<<<<< HEAD
-    "melipayamak": "^1.0.5",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.3.3",
+    "mysql2": "^3.2.3",
     "request": "^2.88.2",
-=======
-    "mysql": "^2.18.1",
-    "mysql2": "^2.3.3",
->>>>>>> 4358e44452672738e15f78a39a7d6b82d0647489
     "typology": "^1.3.0",
-    "validator": "^13.7.0"
-  },
-  "devDependencies": {
-<<<<<<< HEAD
-    "nodemon": "^2.0.20",
-    "prettier": "2.8.3"
-=======
-    "nodemon": "^2.0.20"
->>>>>>> 4358e44452672738e15f78a39a7d6b82d0647489
+    "validator": "^13.9.0"
   }
 }
