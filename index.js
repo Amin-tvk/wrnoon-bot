@@ -34,7 +34,7 @@ this.inputut_number = false;
 const logo = "https://ibb.co/hfnLP3w";
 //import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
 // Create a bot.
-const bot = new Bot("5959897233:AAG5Kv-eHSeKl39DfK_s8DVcoTjZ78eYUxk", {
+const bot = new Bot("", {
   polling: false,
 });
 var api = Kavenegar.KavenegarApi({
